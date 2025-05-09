@@ -17,13 +17,14 @@ nav {
 }
 
 .filter-btn {
-  margin: 0.3rem;
-  padding: 0.5rem 1rem;
+  display: inline-block;
   background-color: #334155;
-  border: none;
   color: white;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
-  cursor: pointer;
+  text-decoration: none;
+  margin: 0.3rem;
+  transition: background-color 0.2s;
 }
 
 .filter-btn:hover {

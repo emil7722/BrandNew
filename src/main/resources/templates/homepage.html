@@ -8,10 +8,10 @@
 <h1>📰 Brand News</h1>
 
 <div class="filter-buttons">
-    <button class="filter-btn" data-category="all">All</button>
-    <button class="filter-btn" data-category="technology">Technology</button>
-    <button class="filter-btn" data-category="sports">Sports</button>
-    <button class="filter-btn" data-category="politics">Politics</button>
+    <a th:href="@{/}" class="filter-btn">All</a>
+    <a th:href="@{/category/technology}" class="filter-btn">Technology</a>
+    <a th:href="@{/category/sports}" class="filter-btn">Sports</a>
+    <a th:href="@{/category/politics}" class="filter-btn">Politics</a>
 </div>
 
 <div id="news-container">

@@ -37,6 +37,11 @@ header a {
   margin-top: 0;
 }
 
+.news-body {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
 .placeholder {
   margin-top: 1rem;
   font-style: italic;

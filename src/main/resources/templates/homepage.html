@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en' xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Brand News</title>
+    <link rel="stylesheet" th:href="@{/styles/homepage.css}">
+</head>
+<body>
+<h1>📰 Brand News</h1>
+
+<div class="filter-buttons">
+    <button class="filter-btn" data-category="all">All</button>
+    <button class="filter-btn" data-category="technology">Technology</button>
+    <button class="filter-btn" data-category="sports">Sports</button>
+    <button class="filter-btn" data-category="politics">Politics</button>
+</div>
+
+<div id="news-container">
+    <div th:each="news : ${newsList}" class="news-card">
+        <div class="news-title" th:text="${news.title}"></div>
+        <div class="news-source" th:text="${news.source} + ' - ' + ${news.category}"></div>
+    </div>
+</div>
+
+<script th:src="@{/scripts/homepage.js}" defer></script>
+</body>
+</html>

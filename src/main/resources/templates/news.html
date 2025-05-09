@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title th:text="${news.title}">News Detail</title>
+  <link rel="stylesheet" th:href="@{/styles/news.css}" />
+</head>
+<body>
+<header>
+  <h1>📰 Brand News</h1>
+  <a th:href="@{/}">← Back to homepage</a>
+</header>
+
+<main class="news-detail">
+  <div class="news-content">
+    <h2 th:text="${news.title}">News Title</h2>
+    <p><strong>Source:</strong> <span th:text="${news.source}"></span></p>
+    <p><strong>Category:</strong> <span th:text="${news.category}"></span></p>
+    <p class="placeholder">This is a placeholder for full article content. Later, you can show real summaries or API content here.</p>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Brand News</p>
+</footer>
+
+<script th:src="@{/scripts/news.js}" defer></script>
+</body>
+</html>

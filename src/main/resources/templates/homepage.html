@@ -15,10 +15,10 @@
 </div>
 
 <div id="news-container">
-    <div th:each="news : ${newsList}" class="news-card">
-        <div class="news-title" th:text="${news.title}"></div>
-        <div class="news-source" th:text="${news.source} + ' - ' + ${news.category}"></div>
-    </div>
+    <a th:each="news : ${newsList}" th:href="@{/news/{id}(id=${news.id})}" class="news-card">
+        <div class="news-title" th:text="${news.title}">News Title</div>
+        <div class="news-source" th:text="${news.source} + ' - ' + ${news.category}">Source</div>
+    </a>
 </div>
 
 <script th:src="@{/scripts/homepage.js}" defer></script>

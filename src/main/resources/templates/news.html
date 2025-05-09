@@ -16,7 +16,7 @@
     <h2 th:text="${news.title}">News Title</h2>
     <p><strong>Source:</strong> <span th:text="${news.source}"></span></p>
     <p><strong>Category:</strong> <span th:text="${news.category}"></span></p>
-    <p class="placeholder">This is a placeholder for full article content. Later, you can show real summaries or API content here.</p>
+    <p class="news-body" th:text="${news.content}">Full article content here...</p>
   </div>
 </main>
 

@@ -18,8 +18,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
-        System.out.println("🔥 Home route hit!");
-        System.out.println("Session user on homepage: " + session.getAttribute("loggedInUser"));
         model.addAttribute("newsList", newsService.getAllNews());
         model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
         return "homepage";

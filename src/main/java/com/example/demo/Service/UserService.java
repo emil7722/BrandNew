@@ -1,28 +1,33 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.User;
+import com.example.demo.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Optional;
 
 @Service
 public class UserService {
-    private final Map<String, User> users = new HashMap<>();
+
+    @Autowired
+    private UserRepository userRepo;
 
     public boolean register(User user, String confirmPassword) {
-        if (users.containsKey(user.getEmail())) return false;
         if (!user.getPassword().equals(confirmPassword)) return false;
+        if (userRepo.findByEmail(user.getEmail()).isPresent()) return false;
 
-        users.put(user.getEmail(), user);
+        userRepo.save(user);
         return true;
     }
 
     public boolean login(String email, String password) {
-        User user = users.get(email);
-        return user != null && user.getPassword().equals(password);
+        return userRepo.findByEmail(email)
+                .map(u -> u.getPassword().equals(password))
+                .orElse(false);
     }
 
-    public User findByEmail(String email) {
-        return users.get(email);
+    public Optional<User> getByEmail(String email) {
+        return userRepo.findByEmail(email);
     }
 }

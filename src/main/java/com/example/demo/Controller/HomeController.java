@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.Model.NewsItem;
 import com.example.demo.Service.NewsService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,15 +17,19 @@ public class HomeController {
     private NewsService newsService;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model, HttpSession session) {
+        System.out.println("🔥 Home route hit!");
+        System.out.println("Session user on homepage: " + session.getAttribute("loggedInUser"));
         model.addAttribute("newsList", newsService.getAllNews());
-        return "homepage"; // renders templates/index.html
+        model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
+        return "homepage";
     }
 
     @GetMapping("/category/{category}")
-    public String byCategory(@PathVariable String category, Model model) {
+    public String byCategory(@PathVariable String category, Model model, HttpSession session) {
         List<NewsItem> filtered = newsService.getByCategory(category);
         model.addAttribute("newsList", filtered);
+        model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
         return "homepage";
     }
 
@@ -33,6 +38,6 @@ public class HomeController {
         NewsItem item = newsService.getById(id);
         if (item == null) return "404";
         model.addAttribute("news", item);
-        return "news"; // renders templates/news.html
+        return "news";
     }
 }

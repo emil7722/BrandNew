@@ -16,6 +16,25 @@ nav {
   margin-top: 1rem;
 }
 
+.auth-buttons {
+  text-align: right;
+  padding: 1rem;
+}
+
+.auth-btn {
+  display: inline-block;
+  background-color: #334155;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-left: 0.5rem;
+  text-decoration: none;
+}
+
+.auth-btn:hover {
+  background-color: #475569;
+}
+
 .filter-btn {
   display: inline-block;
   background-color: #334155;

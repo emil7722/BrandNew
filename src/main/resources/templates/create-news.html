@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en' xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create News - Brand News</title>
+  <link rel="stylesheet" th:href="@{/styles/homepage.css}">
+</head>
+<body>
+
+<h2>Add a New News Article</h2>
+
+<form th:action="@{/admin/news/create}" th:object="${newsItem}" method="post" class="news-form">
+  <label>Title:
+    <input type="text" th:field="*{title}" required />
+  </label>
+
+  <label>Source:
+    <input type="text" th:field="*{source}" required />
+  </label>
+
+  <label>Category:
+    <select th:field="*{category}">
+      <option value="technology">Technology</option>
+      <option value="sports">Sports</option>
+      <option value="politics">Politics</option>
+    </select>
+  </label>
+
+  <label>Content:
+    <textarea th:field="*{content}" rows="5" required></textarea>
+  </label>
+
+  <button type="submit">Submit News</button>
+</form>
+
+<a th:href="@{/}">← Back to homepage</a>
+
+</body>
+</html>

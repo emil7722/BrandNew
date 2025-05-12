@@ -85,6 +85,30 @@ main {
   margin-top: 0.5rem;
 }
 
+.news-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 2rem auto;
+  gap: 1rem;
+}
+
+.news-form input,
+.news-form select,
+.news-form textarea {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.news-form button {
+  padding: 0.7rem;
+  background: #334155;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 footer {
   text-align: center;
   padding: 1rem;

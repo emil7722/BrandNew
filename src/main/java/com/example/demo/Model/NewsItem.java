@@ -1,24 +1,36 @@
 package com.example.demo.Model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "news_items")
 public class NewsItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
-    private String source;
+
     private String category;
+
+    private String source;
+
+    @Column(columnDefinition = "TEXT")
     private String content;
 
-    public NewsItem(Long id, String title, String source, String category, String content) {
-        this.id = id;
-        this.title = title;
-        this.source = source;
-        this.category = category;
-        this.content = content;
-    }
-
-    // Getters
+    // Getters & setters
     public Long getId() { return id; }
+
     public String getTitle() { return title; }
-    public String getSource() { return source; }
+    public void setTitle(String title) { this.title = title; }
+
     public String getCategory() { return category; }
-    public String getContent() {return content; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getSource() { return source; }
+    public void setSource(String source) { this.source = source; }
+
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 }

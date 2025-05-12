@@ -38,4 +38,17 @@ public class HomeController {
         model.addAttribute("news", item);
         return "news";
     }
+
+    @GetMapping("/admin/news/create")
+    public String createNewsForm(Model model, HttpSession session) {
+        model.addAttribute("newsItem", new NewsItem());
+        model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
+        return "create-news";
+    }
+
+    @PostMapping("/admin/news/create")
+    public String handleNewsSubmit(@ModelAttribute NewsItem newsItem) {
+        newsService.addNews(newsItem);
+        return "redirect:/"; // Go back to homepage after adding
+    }
 }

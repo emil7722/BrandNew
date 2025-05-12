@@ -7,6 +7,10 @@
 <body>
 <h1>📰 Brand News</h1>
 
+<th:block th:if="${loggedInUser}">
+    <a th:href="@{/admin/news/create}">+ Add News</a>
+</th:block>
+
 <div class="auth-buttons">
   <span th:if="${loggedInUser}">
   <a class="auth-btn" th:href="@{/logout}">Logout</a>
@@ -15,7 +19,6 @@
   <a class="auth-btn" th:href="@{/login}">Login</a>
   <a class="auth-btn" th:href="@{/register}">Register</a>
 </span>
-
 </div>
 
 <div class="filter-buttons">

@@ -5,6 +5,8 @@ import com.example.demo.Model.User;
 import com.example.demo.Service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,16 +30,24 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())
+                ? auth.getName()
+                : null;
         newsApiService.fetchAndStoreNews();
         model.addAttribute("newsList", newsService.getAllNews());
-        model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
+        model.addAttribute("loggedInUser", email);
         return "homepage";
     }
 
     @GetMapping("/category/{category}")
     public String byCategory(@PathVariable String category, Model model, HttpSession session) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())
+                ? auth.getName()
+                : null;
         model.addAttribute("newsList", newsService.getByCategory(category));
-        model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
+        model.addAttribute("loggedInUser", email);
         return "homepage";
     }
 
@@ -65,30 +75,33 @@ public class HomeController {
     }
 
     @GetMapping("/admin/news/create")
-    public String createNewsForm(Model model, HttpSession session) {
-        String email = (String) session.getAttribute("loggedInUser");
+    public String createNewsForm(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getByEmail(email).orElse(null);
 
-        if (user == null || !email.equals("admin@brandnews.com") || !user.getPassword().equals("Manhattan2")) {
-            return "redirect:/"; // unauthorized
+        if (user == null || !email.equals("admin@brandnews.com") || !user.getRole().equalsIgnoreCase("ROLE_ADMIN")) {
+            return "redirect:/"; // Unauthorized
         }
 
+        model.addAttribute("loggedInUser", email);
         model.addAttribute("newsItem", new NewsItem());
         return "create-news";
     }
 
     @PostMapping("/admin/news/create")
-    public String handleNewsSubmit(@ModelAttribute NewsItem newsItem, HttpSession session) {
-        String email = (String) session.getAttribute("loggedInUser");
+    public String handleNewsSubmit(@ModelAttribute NewsItem newsItem, Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getByEmail(email).orElse(null);
 
-        if (user == null || !email.equals("admin@brandnews.com") || !user.getPassword().equals("Manhattan2")) {
-            return "redirect:/"; // block unauthorized post
+        if (user == null || !email.equals("admin@brandnews.com") || !user.getRole().equalsIgnoreCase("ROLE_ADMIN")) {
+            return "redirect:/"; // Unauthorized
         }
 
+        model.addAttribute("loggedInUser", email);
         newsService.addNews(newsItem);
         return "redirect:/";
     }
+
 
     private boolean isAdmin(HttpSession session) {
         String email = (String) session.getAttribute("loggedInUser");

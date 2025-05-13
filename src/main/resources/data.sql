@@ -1,6 +1,5 @@
 INSERT INTO users (full_name, email, password, role) VALUES
-('Admin', 'admin@brandnews.com', 'Manhattan2', 'ADMIN'),
-('Joe Doe', 'joe@example.com', 'Manhattan2', 'USER');
+('Admin', 'admin@brandnews.com', '$2a$12$qXA/4eNPnEoNW5GyXwlho.ypx3PipjSzawsJx62hftaJ2iAG7QXd6', 'ROLE_ADMIN');
 
 --INSERT INTO news_items (title, category, source, content) VALUES
 --('Tech Breakthrough 2025', 'technology', 'Wired', 'A new technology has emerged...'),

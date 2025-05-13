@@ -20,17 +20,16 @@ public class AuthController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute User user, HttpSession session, Model model) {
-        System.out.println("✔️ Login success. Logged in user: " + session.getAttribute("loggedInUser"));
-        if (userService.login(user.getEmail(), user.getPassword())) {
-            session.setAttribute("loggedInUser", user.getEmail());
-            return "redirect:/";
-        } else {
-            model.addAttribute("error", "Invalid email or password");
-            return "login";
-        }
-    }
+//    @PostMapping("/login")
+//    public String login(@ModelAttribute User user, HttpSession session, Model model) {
+//        if (userService.login(user.getEmail(), user.getPassword())) {
+//            session.setAttribute("loggedInUser", user.getEmail());
+//            return "redirect:/";
+//        } else {
+//            model.addAttribute("error", "Invalid email or password");
+//            return "login";
+//        }
+//    }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

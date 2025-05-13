@@ -51,4 +51,6 @@ public class HomeController {
         newsService.addNews(newsItem);
         return "redirect:/"; // Go back to homepage after adding
     }
+
+    //salaaam
 }

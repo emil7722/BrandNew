@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <title th:text="${news.title}">News Detail</title>
-  <link rel="stylesheet" th:href="@{/styles/news.css}" />
+  <title th:text="${news.title}">News Details</title>
+  <link rel="stylesheet" th:href="@{/styles/homepage.css}">
+  <style>
+    .news-detail {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .news-detail img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 1rem 0;
+    }
+
+    .news-detail a {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #2563eb;
+        font-weight: bold;
+    }
+
+    .meta {
+        font-size: 0.9rem;
+        color: gray;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>📰 Brand News</h1>
-  <a th:href="@{/}">← Back to homepage</a>
-</header>
 
-<main class="news-detail">
-  <div class="news-content">
-    <h2 th:text="${news.title}">News Title</h2>
-    <p><strong>Source:</strong> <span th:text="${news.source}"></span></p>
-    <p><strong>Category:</strong> <span th:text="${news.category}"></span></p>
-    <p class="news-body" th:text="${news.content}">Full article content here...</p>
+<div class="news-detail">
+  <h1 th:text="${news.title}"></h1>
+  <p class="meta" th:text="${news.source} + ' - ' + ${news.category}"></p>
+  <img th:src="${news.imageUrl}" alt="news image"/>
+
+  <p th:text="${news.content}"></p>
+
+  <a th:href="${news.url}" target="_blank">🔗 Read full article</a>
+  <form th:action="@{/news/{id}/summarize(id=${news.id})}" method="post">
+    <button type="submit">🧠 Summarize with AI</button>
+  </form>
+
+  <div th:if="${summary}">
+    <h2>AI Summary</h2>
+    <p th:text="${summary}"></p>
   </div>
-</main>
+  <br/><br/>
+  <a th:href="@{/}" class="auth-btn">← Back to homepage</a>
+</div>
 
-<footer>
-  <p>&copy; 2025 Brand News</p>
-</footer>
-
-<script th:src="@{/scripts/news.js}" defer></script>
 </body>
 </html>

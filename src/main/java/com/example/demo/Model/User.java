@@ -11,16 +11,14 @@ public class User {
     private Long id;
 
     private String fullName;
-
-    @Column(unique = true)
     private String email;
-
     private String password;
+    private String role = "USER"; // Optional for future role control
 
-    private String role = "USER"; // Optional: useful later for admin feature
+    // Getters and Setters
 
-    // Getters & setters
     public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }

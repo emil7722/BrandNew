@@ -1,56 +1,88 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9fafb;
-  color: #1f2937;
-}
-
-header {
-  background-color: #1e293b;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-
-header a {
-  color: #cbd5e1;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 0.5rem;
-}
-
 .news-detail {
-  padding: 2rem;
-  max-width: 800px;
-  margin: auto;
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #333;
+    line-height: 1.6;
 }
 
-.news-content {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+.news-headline {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
-.news-content h2 {
-  margin-top: 0;
+.meta {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
 }
 
-.news-body {
-  margin-top: 1rem;
-  line-height: 1.6;
+.news-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
 }
 
-.placeholder {
-  margin-top: 1rem;
-  font-style: italic;
-  color: #64748b;
+.news-full-content {
+    font-size: 1.05rem;
+    color: #444;
+    margin-bottom: 1.5rem;
 }
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #e2e8f0;
-  margin-top: 2rem;
+.external-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.external-link:hover {
+    color: #005fa3;
+    text-decoration: underline;
+}
+
+.ai-button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.6rem 1rem;
+    background-color: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ai-button:hover {
+    background-color: #3730a3;
+}
+
+.ai-summary {
+    margin-top: 2rem;
+    background-color: #f0f4ff;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid #4f46e5;
+    border-radius: 6px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    text-decoration: underline;
 }

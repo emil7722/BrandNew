@@ -3,55 +3,30 @@
 <head>
   <title th:text="${news.title}">News Details</title>
   <link rel="stylesheet" th:href="@{/styles/homepage.css}">
-  <style>
-    .news-detail {
-        max-width: 800px;
-        margin: 2rem auto;
-        background: white;
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .news-detail img {
-        max-width: 100%;
-        border-radius: 8px;
-        margin: 1rem 0;
-    }
-
-    .news-detail a {
-        display: inline-block;
-        margin-top: 1rem;
-        color: #2563eb;
-        font-weight: bold;
-    }
-
-    .meta {
-        font-size: 0.9rem;
-        color: gray;
-    }
-  </style>
+  <link rel="stylesheet" th:href="@{/styles/news.css}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
 <div class="news-detail">
-  <h1 th:text="${news.title}"></h1>
+  <h1 th:text="${news.title}" class="news-headline"></h1>
   <p class="meta" th:text="${news.source} + ' - ' + ${news.category}"></p>
-  <img th:src="${news.imageUrl}" alt="news image"/>
+  <img th:src="${news.imageUrl}" alt="news image" class="news-image"/>
 
-  <p th:text="${news.content}"></p>
+  <p th:text="${news.content}" class="news-full-content"></p>
 
-  <a th:href="${news.url}" target="_blank">🔗 Read full article</a>
+  <a th:href="${news.url}" target="_blank" class="external-link">🔗 Read full article</a>
+
   <form th:action="@{/news/{id}/summarize(id=${news.id})}" method="post">
-    <button type="submit">🧠 Summarize with AI</button>
+    <button type="submit" class="ai-button">🧠 Summarize with AI</button>
   </form>
 
-  <div th:if="${summary}">
+  <div th:if="${summary}" class="ai-summary">
     <h2>AI Summary</h2>
     <p th:text="${summary}"></p>
   </div>
-  <br/><br/>
-  <a th:href="@{/}" class="auth-btn">← Back to homepage</a>
+
+  <a th:href="@{/}" class="back-link">← Back to homepage</a>
 </div>
 
 </body>

@@ -14,7 +14,7 @@ public class NewsService {
     private NewsRepository newsRepo;
 
     public List<NewsItem> getAllNews() {
-        return newsRepo.findAll();
+        return newsRepo.findAllByOrderByPublishedAtDesc();
     }
 
     public List<NewsItem> getByCategory(String category) {

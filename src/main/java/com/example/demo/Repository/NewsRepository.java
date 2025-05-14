@@ -7,4 +7,5 @@ import java.util.List;
 public interface NewsRepository extends JpaRepository<NewsItem, Long> {
     List<NewsItem> findByCategory(String category);
     boolean existsByTitleAndSource(String title, String source);
+    List<NewsItem> findAllByOrderByPublishedAtDesc();
 }

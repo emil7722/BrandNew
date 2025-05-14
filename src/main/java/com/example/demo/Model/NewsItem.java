@@ -2,6 +2,8 @@ package com.example.demo.Model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "news_items")
 public class NewsItem {
@@ -24,7 +26,11 @@ public class NewsItem {
     @Column(length = 1000)
     private String imageUrl;
 
-    // Getters and Setters
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "published_at")
+    private Date publishedAt;
+
+// Getters and Setters
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -46,4 +52,12 @@ public class NewsItem {
 
     public String getUrl() { return url; }
     public void setUrl(String url) { this.url = url; }
+
+    public Date getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(Date publishedAt) {
+        this.publishedAt = publishedAt;
+    }
 }

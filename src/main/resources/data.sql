@@ -1,5 +1,6 @@
 INSERT INTO users (full_name, email, password, role) VALUES
-('Admin', 'admin@brandnews.com', '$2a$12$qXA/4eNPnEoNW5GyXwlho.ypx3PipjSzawsJx62hftaJ2iAG7QXd6', 'ROLE_ADMIN');
+('Admin', 'admin@brandnews.com', '$2a$12$qXA/4eNPnEoNW5GyXwlho.ypx3PipjSzawsJx62hftaJ2iAG7QXd6', 'ROLE_ADMIN'),
+('Emil Tahirli', 'emil@creditsafe.uk', '$2a$12$oKWrcZn0K7tPkY0Qre94ZetUoofhoMWe1lMb8WFDVbE0bD/0K.iCi', 'USER');
 
 --INSERT INTO news_items (title, category, source, content) VALUES
 --('Tech Breakthrough 2025', 'technology', 'Wired', 'A new technology has emerged...'),

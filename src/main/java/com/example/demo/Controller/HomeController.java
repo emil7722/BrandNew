@@ -28,6 +28,9 @@ public class HomeController {
     @Autowired
     private AimlApiService aimlApiService;
 
+    @Autowired
+    private BookmarkService bookmarkService;
+
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -52,11 +55,17 @@ public class HomeController {
     }
 
     @GetMapping("/news/{id}")
-    public String newsDetail(@PathVariable Long id, Model model, HttpSession session) {
+    public String newsDetail(@PathVariable Long id, Model model) {
         NewsItem item = newsService.getById(id);
         if (item == null) return "404";
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())
+                ? auth.getName()
+                : null;
+
         model.addAttribute("news", item);
-        model.addAttribute("loggedInUser", session.getAttribute("loggedInUser"));
+        model.addAttribute("loggedInUser", email);
         return "news";
     }
 
@@ -100,6 +109,24 @@ public class HomeController {
         model.addAttribute("loggedInUser", email);
         newsService.addNews(newsItem);
         return "redirect:/";
+    }
+
+    @PostMapping("/news/{id}/bookmark")
+    public String bookmarkNews(@PathVariable Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())
+                ? auth.getName() : null;
+
+        if (email != null) {
+            User user = userService.getByEmail(email).orElse(null);
+            NewsItem newsItem = newsService.getById(id);
+
+            if (user != null && newsItem != null) {
+                bookmarkService.addBookmark(user, newsItem);
+            }
+        }
+
+        return "redirect:/news/" + id;
     }
 
 

@@ -26,6 +26,13 @@
     <p th:text="${summary}"></p>
   </div>
 
+  <!-- Show bookmark button only to logged-in users -->
+  <div th:if="${loggedInUser}">
+    <form th:action="@{/news/{id}/bookmark(id=${news.id})}" method="post">
+      <button type="submit">🔖 Bookmark</button>
+    </form>
+  </div>
+
   <a th:href="@{/}" class="back-link">← Back to homepage</a>
 </div>
 

@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: brandnews-mysql
+    environment:
+      MYSQL_DATABASE: brandnewsdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - brandnews-net
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: brandnews-app
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/brandnewsdb
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    networks:
+      - brandnews-net
+
+volumes:
+  mysql_data:
+
+networks:
+  brandnews-net:

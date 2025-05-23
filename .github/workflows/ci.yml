@@ -25,6 +25,8 @@ jobs:
 
       - name: Build Spring Boot app with Gradle
         run: ./gradlew build --no-daemon
+        env:
+          CI: true
 
       - name: Build Docker image (optional)
         run: docker build -t brandnews-app .
